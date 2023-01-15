@@ -21,6 +21,12 @@ usage() {
 
 }
 
+if [[ $# -eq 0 ]] ; then
+    echo 'Use parameters please.'
+    usage
+    exit 0
+fi
+
 while [[ "$#" -gt 0 ]]; do
     case $1 in
         -e|--enable) _ENABLE=1; ;;
@@ -104,11 +110,8 @@ enableLogging() {
 # ---------------------------------------------------------------------\
 isRoot
 
-if [[ $# -eq 0 ]]; then
-    echo "Use parameters please. Exit. Bye."
-    usage
-    exit 0
-elif [[ "$_ENABLE" -eq "1" ]]; then
+# Works with args
+if [[ "$_ENABLE" -eq "1" ]]; then
     echo "Enable logging..."
     enableLogging
 elif [[ "$_DISABLE" -eq "1" ]]; then
@@ -118,7 +121,4 @@ else
     echo "Unknown command. Exit. Bye."
     exit 1
 fi
-
-
-
 
