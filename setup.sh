@@ -111,7 +111,7 @@ enableLogging() {
 # Actions
 # ---------------------------------------------------------------------\
 isRoot
-
+checkArgs
 
 if [[ "$_ENABLE" -eq "1" ]]; then
     echo "Enable logging..."
