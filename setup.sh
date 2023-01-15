@@ -54,14 +54,6 @@ isRoot() {
     fi
 }
 
-checkArgs() {
-    if [[ -z "$1" ]]; then
-        echo "Use parameters please. Exit. Bye."
-        usage
-        exit 0
-    fi
-}
-
 disableLogrotate() {
     rm /etc/rsyslog.d/firewalld.conf
     systemctl restart rsyslog.service
@@ -113,12 +105,18 @@ enableLogging() {
 isRoot
 checkArgs
 
-if [[ "$_ENABLE" -eq "1" ]]; then
+if [[ -z "$1" ]]; then
+    echo "Use parameters please. Exit. Bye."
+    usage
+    exit 0
+elif [[ "$_ENABLE" -eq "1" ]]; then
     echo "Enable logging..."
     enableLogging
-fi
-
-if [[ "$_DISABLE" -eq "1" ]]; then
+elif [[ "$_DISABLE" -eq "1" ]]; then
     echo "Disable logging..."
     disableLogging
 fi
+
+
+
+
