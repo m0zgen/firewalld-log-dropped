@@ -103,9 +103,8 @@ enableLogging() {
 # Actions
 # ---------------------------------------------------------------------\
 isRoot
-checkArgs
 
-if [[ -z "$1" ]]; then
+if [[ $# -eq 0 ]]; then
     echo "Use parameters please. Exit. Bye."
     usage
     exit 0
@@ -115,6 +114,9 @@ elif [[ "$_ENABLE" -eq "1" ]]; then
 elif [[ "$_DISABLE" -eq "1" ]]; then
     echo "Disable logging..."
     disableLogging
+else 
+    echo "Unknown command. Exit. Bye."
+    exit 1
 fi
 
 
